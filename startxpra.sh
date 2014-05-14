@@ -4,6 +4,9 @@ if [ $displayFound ]
   then let displayNum="$displayFound + 1"
   else let displayNum=130
 fi
+while [ -e /tmp/.X${displayNum}-lock ] ; do 
+  let displayNum="$displayNum + 1"
+done
 xpra start :$displayNum
 sleep 3
 DISPLAY=:$displayNum xterm &
